@@ -1,0 +1,340 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-green: #22c55e;
+    --accent-green-glow: rgba(34, 197, 94, 0.4);
+    --accent-red: #ef4444;
+    --accent-red-glow: rgba(239, 68, 68, 0.4);
+    --btn-primary: #10b981;
+    --btn-primary-hover: #059669;
+    --btn-secondary: #3b82f6;
+    --btn-secondary-hover: #2563eb;
+    --board-bg: #020617;
+    --board-grid: #1e293b;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Layout Wrapper */
+.game-wrapper {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Header */
+.game-header {
+    text-align: center;
+}
+
+.game-header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: var(--accent-green);
+    text-shadow: 0 0 12px var(--accent-green-glow);
+}
+
+.game-header .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Scoreboard */
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+.score-card {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.score-card .label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+}
+
+.score-card .value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 2px;
+}
+
+/* Canvas Container */
+.canvas-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 400px;
+    background-color: var(--board-bg);
+    border-radius: 16px;
+    border: 3px solid var(--card-border);
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(34, 197, 94, 0.1);
+}
+
+#game-board {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Overlay Styles */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    text-align: center;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 10;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    max-width: 300px;
+}
+
+.overlay-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.overlay-content .game-over-title {
+    color: var(--accent-red);
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px var(--accent-red-glow);
+}
+
+.overlay-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.final-score-text {
+    font-size: 1.2rem !important;
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+.final-score-text span {
+    color: var(--accent-green);
+    font-weight: 800;
+}
+
+.new-record {
+    color: #f59e0b !important;
+    font-weight: 700;
+    font-size: 1.1rem !important;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+.primary-btn {
+    background-color: var(--btn-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px var(--accent-green-glow);
+}
+
+.primary-btn:hover {
+    background-color: var(--btn-primary-hover);
+    box-shadow: 0 6px 16px var(--accent-green-glow);
+}
+
+.secondary-btn {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--card-border);
+}
+
+.secondary-btn:hover:not(:disabled) {
+    background-color: var(--card-border);
+}
+
+.secondary-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Button Bar */
+.button-bar {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.button-bar .btn {
+    flex: 1;
+}
+
+/* Instructions Panel */
+.instructions {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.instructions h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.controls-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.control-item span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.keys {
+    text-align: center;
+    line-height: 1.3;
+}
+
+kbd {
+    display: inline-block;
+    background-color: #0f172a;
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 3px 7px;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    box-shadow: 0 2px 0 var(--card-border);
+    margin: 1px;
+}
+
+.space-key {
+    padding: 4px 16px;
+}
+
+.control-divider {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--card-border);
+}
+
+/* Responsive Scaling */
+@media (max-width: 440px) {
+    .game-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .scoreboard {
+        gap: 10px;
+    }
+
+    .score-card {
+        padding: 8px 12px;
+    }
+
+    .score-card .value {
+        font-size: 1.5rem;
+    }
+
+    .instructions {
+        padding: 12px;
+    }
+
+    .control-divider {
+        display: none;
+    }
+}

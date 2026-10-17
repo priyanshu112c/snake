@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <!-- Game Title -->
+        <header class="game-header">
+            <h1>SNAKE</h1>
+            <p class="subtitle">Classic Arcade Game</p>
+        </header>
+
+        <!-- Scoreboard -->
+        <div class="scoreboard">
+            <div class="score-card">
+                <span class="label">SCORE</span>
+                <span id="current-score" class="value">0</span>
+            </div>
+            <div class="score-card">
+                <span class="label">HIGH SCORE</span>
+                <span id="high-score" class="value">0</span>
+            </div>
+        </div>
+
+        <!-- Canvas and Overlays Container -->
+        <div class="canvas-container">
+            <canvas id="game-board" width="400" height="400"></canvas>
+
+            <!-- Start Game Overlay -->
+            <div id="start-overlay" class="overlay">
+                <div class="overlay-content">
+                    <h2>Ready to Play?</h2>
+                    <p>Guide the snake to eat food and grow. Avoid the walls and your own tail!</p>
+                    <button id="start-btn" class="btn primary-btn">Start Game</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div id="gameover-overlay" class="overlay hidden">
+                <div class="overlay-content">
+                    <h2 class="game-over-title">GAME OVER</h2>
+                    <p class="final-score-text">Final Score: <span id="final-score">0</span></p>
+                    <p id="new-high-score-msg" class="new-record hidden">🎉 New High Score!</p>
+                    <button id="restart-btn" class="btn primary-btn">Play Again</button>
+                </div>
+            </div>
+
+            <!-- Pause Overlay -->
+            <div id="pause-overlay" class="overlay hidden">
+                <div class="overlay-content">
+                    <h2>Game Paused</h2>
+                    <p>Press <kbd>Space</kbd> or click below to resume.</p>
+                    <button id="resume-btn" class="btn primary-btn">Resume</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Controls -->
+        <div class="button-bar">
+            <button id="pause-btn" class="btn secondary-btn" disabled>Pause</button>
+            <button id="reset-btn" class="btn secondary-btn">Restart</button>
+        </div>
+
+        <!-- Instruction Panel -->
+        <section class="instructions">
+            <h3>How to Play</h3>
+            <div class="controls-grid">
+                <div class="control-item">
+                    <div class="keys">
+                        <kbd>▲</kbd><br>
+                        <kbd>◄</kbd><kbd>▼</kbd><kbd>►</kbd>
+                    </div>
+                    <span>Arrow Keys</span>
+                </div>
+                <div class="control-divider">OR</div>
+                <div class="control-item">
+                    <div class="keys">
+                        <kbd>W</kbd><br>
+                        <kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+                    </div>
+                    <span>WASD Keys</span>
+                </div>
+                <div class="control-divider">OR</div>
+                <div class="control-item">
+                    <div class="keys">
+                        <kbd class="space-key">Space</kbd>
+                    </div>
+                    <span>Pause / Resume</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
